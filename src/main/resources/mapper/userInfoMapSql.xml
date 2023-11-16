@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.ch8_5.mapper.UserInfoMapper">
+
+
+    <insert id="insertUser" parameterType="UserInfoTo"  >
+
+            insert into user_info
+            (email,name,password,birth_date,reg_date,sns)
+            values (
+                    #{email},
+                    #{name},
+                    #{password},
+                    #{birthDate,jdbcType=VARCHAR},
+                    now(),
+                    #{sns,jdbcType=VARCHAR}
+                   )
+
+    </insert>
+
+
+    <select id="selectUser" parameterType="string" resultType="UserInfoTo" >
+            select * from user_info
+            where email=#{email}
+    </select>
+
+
+    <update id="updateUser" parameterType="UserInfoTo">
+
+        update user_info
+        set name=#{name},
+            password=#{password},
+            birth_date=#{birthDate,jdbcType=VARCHAR},
+            sns=#{sns,jdbcType=VARCHAR}
+        where email = #{email}
+
+    </update>
+
+    <delete id="deleteUser" parameterType="string">
+
+        delete from user_info
+        where email=#{email}
+
+    </delete>
+
+
+
+</mapper>
