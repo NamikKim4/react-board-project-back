@@ -4,13 +4,13 @@
 <mapper namespace="com.example.ch8_5.mapper.BoardMapper">
     <select id="selectBoardAll" resultType="com.example.ch8_5.to.BoardTo">
         <![CDATA[
-            select * from Board;
+            select * from board;
         ]]>
     </select>
 
     <select id="selectBoardByBno" parameterType="_int" resultType="com.example.ch8_5.to.BoardTo">
         <![CDATA[
-        select * from Board where bno = #{bno};
+        select * from board where bno = #{bno};
         ]]>
     </select>
 
