@@ -1,7 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.example.ch8_5.mapper.TestMapper">
+<mapper namespace="com.example.ch8_5.mapper.BoardMapper">
+    <select id="selectBoardAll" resultType="com.example.ch8_5.to.BoardTo">
+        <![CDATA[
+            select * from Board;
+        ]]>
+    </select>
 
+    <select id="selectBoardByBno" parameterType="_int" resultType="com.example.ch8_5.to.BoardTo">
+        <![CDATA[
+        select * from Board where bno = #{bno};
+        ]]>
+    </select>
+
+    <insert id="insertBoard" parameterType="com.example.ch8_5.to.BoardTo">
+        <![CDATA[
+            insert into board ( title, writer, content, write_date ) value ( #{title}, #{writer}, #{content}, now() );
+        ]]>
+    </insert>
+
+    <update id="updateBoard" parameterType="com.example.ch8_5.to.BoardTo">
+        <![CDATA[
+            update board set title = #{title}, content = #{content}, update_date = now() where bno = #{bno} and writer = #{writer}
+        ]]>
+    </update>
+
+    <update id="hideBoard" parameterType="com.example.ch8_5.to.BoardTo">
+        <![CDATA[
+            update board set deleted_yn = 'Y' where bno = #{bno} and writer = #{writer};
+        ]]>
+    </update>
+
+    <delete id="deleteBoard" parameterType="com.example.ch8_5.to.BoardTo">
+        <![CDATA[
+            delete from board where bno = #{bno} and writer = #{writer};
+        ]]>
+    </delete>
 
 </mapper>
