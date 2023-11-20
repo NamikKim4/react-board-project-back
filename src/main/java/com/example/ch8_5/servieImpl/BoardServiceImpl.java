@@ -33,6 +33,7 @@ public class BoardServiceImpl implements BoardService {
     @Override
     public void modifyBoard(Map<String, Object> map) {
         BoardTo boardTo = (BoardTo) map.get("boardTo");
+        System.out.println("::::: boardServiceImpl boardTo ::::: = " + boardTo);
         boardMapper.updateBoard(boardTo);
     }
 

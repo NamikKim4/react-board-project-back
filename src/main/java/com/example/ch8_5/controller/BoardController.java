@@ -11,16 +11,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-//    BoardTo findBoardByBno(BoardTo boardTo);
-//
-//    void registerBoard(BoardTo boardTo);
-//
-//    void modifyBoard(BoardTo boardTo);
-//
-//    void concealBoard(BoardTo boardTo);
-//
-//    void removeBoard(BoardTo boardTo);
-
 @CrossOrigin("*")
 @RestController
 @RequestMapping("/board")

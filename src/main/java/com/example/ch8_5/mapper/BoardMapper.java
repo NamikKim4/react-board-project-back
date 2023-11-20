@@ -8,6 +8,7 @@ import java.util.Map;
 
 @Mapper
 public interface BoardMapper {
+
     public ArrayList<BoardTo> selectBoardAll();
 
     public BoardTo selectBoardByBno(int bno);
