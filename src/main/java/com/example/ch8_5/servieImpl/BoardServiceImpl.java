@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 @Service
 public class BoardServiceImpl implements BoardService {
@@ -21,7 +22,7 @@ public class BoardServiceImpl implements BoardService {
 
     @Override
     public BoardTo findBoardByBno(int bno) {
-        return null;
+        return boardMapper.selectBoardByBno(bno);
     }
 
     @Override
@@ -30,13 +31,14 @@ public class BoardServiceImpl implements BoardService {
     }
 
     @Override
-    public void modifyBoard(BoardTo boardTo) {
-
+    public void modifyBoard(Map<String, Object> map) {
+        BoardTo boardTo = (BoardTo) map.get("boardTo");
+        boardMapper.updateBoard(boardTo);
     }
 
     @Override
-    public void concealBoard(BoardTo boardTo) {
-
+    public void concealBoard(Map<String, Object> map) {
+        boardMapper.hideBoard(map);
     }
 
     @Override

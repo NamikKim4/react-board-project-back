@@ -3,6 +3,7 @@ package com.example.ch8_5.service;
 import com.example.ch8_5.to.BoardTo;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 public interface BoardService {
     ArrayList<BoardTo> findBoardAll();
@@ -11,9 +12,9 @@ public interface BoardService {
 
     void registerBoard(BoardTo boardTo);
 
-    void modifyBoard(BoardTo boardTo);
+    void modifyBoard(Map<String, Object> map);
 
-    void concealBoard(BoardTo boardTo);
+    void concealBoard(Map<String, Object> map);
 
     void removeBoard(BoardTo boardTo);
 }
