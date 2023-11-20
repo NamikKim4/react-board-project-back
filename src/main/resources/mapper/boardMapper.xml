@@ -8,7 +8,7 @@
         ]]>
     </select>
 
-    <select id="selectBoardByBno" parameterType="_int" resultType="com.example.ch8_5.to.BoardTo">
+    <select id="selectBoardByBno" parameterType="Integer" resultType="com.example.ch8_5.to.BoardTo">
         <![CDATA[
         select * from board where bno = #{bno};
         ]]>

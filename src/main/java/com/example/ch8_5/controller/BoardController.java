@@ -21,6 +21,7 @@ import java.util.Map;
 //
 //    void removeBoard(BoardTo boardTo);
 
+@CrossOrigin("*")
 @RestController
 @RequestMapping("/board")
 public class BoardController {
@@ -29,7 +30,7 @@ public class BoardController {
     private BoardService boardService;
 
     // 보드리스트 조회
-    @GetMapping("board")
+    @GetMapping("/board")
     public ResponseEntity<Map<String, Object>> findBoardAll() {
         Map<String, Object> map = new HashMap<>();
         try {
