@@ -19,5 +19,5 @@ public interface BoardMapper {
 
     public void hideBoard(Map<String, Object>map);
 
-    public void deleteBoard(BoardTo boardTo);
+    public void deleteBoard(Map<String, Object>map);
 }

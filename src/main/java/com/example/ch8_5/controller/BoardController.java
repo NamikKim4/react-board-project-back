@@ -54,16 +54,16 @@ public class BoardController {
     }
 
     // 보드 등록
-    @PostMapping ("/board")
+    @PostMapping("/board")
     public ResponseEntity<Map<String, Object>> registerBoard(@RequestBody BoardTo boardTo) {
         HashMap<String, Object> map = new HashMap<>();
         try {
-            map.put("errorMsg","success");
+            map.put("errorMsg", "success");
             map.put("errorCode", 0);
             System.out.println("[registerBoardTo] = " + boardTo);
             boardService.registerBoard(boardTo);
             return ResponseEntity.ok(map);
-        } catch (Exception e){
+        } catch (Exception e) {
             map.put("errorCode", -1);
             map.put("errorMsg", e.getMessage());
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(map);
@@ -90,26 +90,37 @@ public class BoardController {
         }
     }
 
-    
 
-    // 보드 숨김(삭제처럼보이도록)
-    public ResponseEntity<Map<String, Object>> concealBoard(
-            @PathVariable("writer") String writer, @PathVariable("bno") int bno) {
-        HashMap<String, Object> map = new HashMap<>();
-        System.out.println("writer🤗🤗🤗 = " + writer);
-        System.out.println("bno🤗🤗🤗 = " + bno);
+    // 보드 삭제
+    @PutMapping("/conceal/{writer}/{bno}")
+    public ResponseEntity<Map<String, Object>> deleteBoard(
+            @PathVariable String writer,
+            @PathVariable int bno) {
+
+        // 🔹 화면에서 잘 들어왔는지 확인
+        System.out.println("writer@@@@@@: " + writer);
+        System.out.println("bno@@@@@@: " + bno);
+
+        Map<String, Object> map = new HashMap<>();
         try {
-            map.put("writer", writer);
-            map.put("bno", bno);
-            map.put("errorMsg","success");
+            // writer, bno를 Map에 담아서 Service 호출
+            Map<String, Object> paramMap = new HashMap<>();
+            paramMap.put("writer", writer);
+            paramMap.put("bno", bno);
+
+            boardService.deleteBoard(paramMap);  // Map 전달
+
             map.put("errorCode", 0);
-            System.out.println(":::::concealMap::::: = " + map);
-            boardService.concealBoard(map);
+            map.put("errorMsg", "success");
             return ResponseEntity.ok(map);
-        } catch (Exception e){
+        } catch (Exception e) {
             map.put("errorCode", -1);
             map.put("errorMsg", e.getMessage());
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(map);
         }
     }
+
+
+
+
 }

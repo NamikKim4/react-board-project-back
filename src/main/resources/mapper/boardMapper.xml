@@ -32,10 +32,17 @@
         ]]>
     </update>
 
-    <delete id="deleteBoard" parameterType="com.example.ch8_5.to.BoardTo">
+    <delete id="deleteBoard" parameterType="map">
         <![CDATA[
-            delete from board where bno = #{bno} and writer = #{writer};
+        -- 1. 댓글 먼저 삭제 (게시물 - 댓글 연결되어있음)
+        DELETE FROM board_comment
+        WHERE pcno = #{bno};
+
+        -- 2. 게시글 삭제
+        DELETE FROM board
+        WHERE bno = #{bno} AND writer = #{writer};
         ]]>
     </delete>
+
 
 </mapper>

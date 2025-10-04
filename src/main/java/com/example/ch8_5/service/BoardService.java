@@ -16,5 +16,7 @@ public interface BoardService {
 
     void concealBoard(Map<String, Object> map);
 
+    void deleteBoard(Map<String, Object> map);
+
     void removeBoard(BoardTo boardTo);
 }
