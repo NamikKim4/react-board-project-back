@@ -12,7 +12,7 @@ public interface BoardService {
 
     void registerBoard(BoardTo boardTo);
 
-    void modifyBoard(Map<String, Object> map);
+    void modifyBoard(BoardTo boardTo);
 
     void concealBoard(Map<String, Object> map);
 

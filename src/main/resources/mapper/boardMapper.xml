@@ -16,7 +16,7 @@
 
     <insert id="insertBoard" parameterType="com.example.ch8_5.to.BoardTo">
         <![CDATA[
-            insert into board ( title, writer, content, write_date ) value ( #{title}, #{writer}, #{content}, now() );
+            insert into board ( title, writer, content, write_date, update_date, board_like ) value ( #{title}, #{writer}, #{content}, #{writeDate}, #{updateDate}, #{boardLike}  );
         ]]>
     </insert>
 

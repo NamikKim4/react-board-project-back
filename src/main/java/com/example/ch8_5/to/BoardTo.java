@@ -4,7 +4,7 @@ import lombok.Data;
 
 @Data
 public class BoardTo {
-    private int bno;
+    private Long bno;
     private String title;
     private String writer;
     private String content;

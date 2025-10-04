@@ -71,14 +71,17 @@ public class BoardController {
     }
 
     // 보드 수정
-    @PutMapping("/board")
-    public ResponseEntity<Map<String, Object>> modify(@RequestBody BoardTo boardTo) {
+    @PutMapping("/update")
+    public ResponseEntity<Map<String, Object>> modifyBoard(@RequestBody BoardTo boardTo) {
+
         Map<String, Object> map = new HashMap<>();
         try {
+            // Service에 BoardTo 그대로 전달
+            boardService.modifyBoard(boardTo);
+
             map.put("boardTo", boardTo);
-            map.put("errorMsg","success");
+            map.put("errorMsg", "success");
             map.put("errorCode", 0);
-            boardService.modifyBoard(map);
             return ResponseEntity.ok(map);
         } catch (Exception e) {
             map.put("errorCode", -1);
@@ -87,11 +90,14 @@ public class BoardController {
         }
     }
 
+    
+
     // 보드 숨김(삭제처럼보이도록)
-    @PutMapping("/board/conceal/{writer}/{bno}")
     public ResponseEntity<Map<String, Object>> concealBoard(
             @PathVariable("writer") String writer, @PathVariable("bno") int bno) {
         HashMap<String, Object> map = new HashMap<>();
+        System.out.println("writer🤗🤗🤗 = " + writer);
+        System.out.println("bno🤗🤗🤗 = " + bno);
         try {
             map.put("writer", writer);
             map.put("bno", bno);
