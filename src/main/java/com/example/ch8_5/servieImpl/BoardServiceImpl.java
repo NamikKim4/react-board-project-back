@@ -50,4 +50,11 @@ public class BoardServiceImpl implements BoardService {
     public void removeBoard(BoardTo boardTo) {
 
     }
+
+    // ✅ 🔍 게시물 검색 기능 추가
+    @Override
+    public ArrayList<BoardTo> searchBoard(String keyword) {
+        System.out.println("ServiceImpl 검색어 확인: " + keyword);
+        return boardMapper.searchBoard(keyword);
+    }
 }

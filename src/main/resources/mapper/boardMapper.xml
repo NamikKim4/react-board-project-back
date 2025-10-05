@@ -34,7 +34,7 @@
 
     <delete id="deleteBoard" parameterType="map">
         <![CDATA[
-        -- 1. 댓글 먼저 삭제 (게시물 - 댓글 연결되어있음)
+        -- 1. 댓글 먼저 삭제 (게시물 - 댓글 테이블이 연결되어있음)
         DELETE FROM board_comment
         WHERE pcno = #{bno};
 
@@ -43,6 +43,17 @@
         WHERE bno = #{bno} AND writer = #{writer};
         ]]>
     </delete>
+
+    <select id="searchBoard" parameterType="String" resultType="com.example.ch8_5.to.BoardTo">
+        <![CDATA[
+        SELECT *
+        FROM board
+        WHERE deleted_yn = 'N'
+          AND (title LIKE CONCAT('%', #{keyword}, '%')
+            OR content LIKE CONCAT('%', #{keyword}, '%'))
+        ORDER BY bno DESC;
+        ]]>
+    </select>
 
 
 </mapper>

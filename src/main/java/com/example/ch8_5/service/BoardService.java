@@ -3,6 +3,7 @@ package com.example.ch8_5.service;
 import com.example.ch8_5.to.BoardTo;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 public interface BoardService {
@@ -19,4 +20,7 @@ public interface BoardService {
     void deleteBoard(Map<String, Object> map);
 
     void removeBoard(BoardTo boardTo);
+
+    // ✅ 🔍 게시물 검색 기능 추가
+    List<BoardTo> searchBoard(String keyword);
 }

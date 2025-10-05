@@ -20,4 +20,7 @@ public interface BoardMapper {
     public void hideBoard(Map<String, Object>map);
 
     public void deleteBoard(Map<String, Object>map);
+
+    // ✅ 🔍 게시물 검색 기능 추가
+    ArrayList<BoardTo> searchBoard(String keyword);
 }

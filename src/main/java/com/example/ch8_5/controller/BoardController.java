@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @CrossOrigin("*")
@@ -120,6 +121,28 @@ public class BoardController {
         }
     }
 
+
+    // 게시물 검색
+    @PutMapping("/search/{keyword}")
+    public ResponseEntity<Map<String, Object>> searchBoard(@PathVariable String keyword) {
+        Map<String, Object> map = new HashMap<>();
+        try {
+            System.out.println("keyword@@@@@@: " + keyword);
+
+            // 🔹 서비스 호출 → 검색결과 반환받기
+            List<BoardTo> list = boardService.searchBoard(keyword);
+
+            map.put("errorCode", 0);
+            map.put("errorMsg", "success");
+            map.put("list", list); // 🔹 검색 결과 전달
+
+            return ResponseEntity.ok(map);
+        } catch (Exception e) {
+            map.put("errorCode", -1);
+            map.put("errorMsg", e.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(map);
+        }
+    }
 
 
 
